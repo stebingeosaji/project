@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offer a Ride</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: url('/homepage image.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column; /* Stack header and container vertically */
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    /* Transparent Navigation Bar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      box-sizing: border-box;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00bcd4;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+      max-height: 80vh; /* Adjusted to accommodate the header */
+      overflow-y: auto;
+      margin-top: 60px; /* Space for the fixed header */
+    }
+
+    /* Custom Scrollbar Styling */
+    .container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .container::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+
+    .container::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+    }
+
+    .container::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Header inside the container */
+    .container .header {
+      text-align: center;
+      margin-bottom: 2rem; /* Space between header and form */
+    }
+
+    .container .header h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem; /* Space between title and description */
+    }
+
+    .container .header p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin: 0; /* Remove default margin */
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: background 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .form-group input[type="number"] {
+      appearance: textfield;
+    }
+
+    .form-group input[type="number"]::-webkit-inner-spin-button,
+    .form-group input[type="number"]::-webkit-outer-spin-button {
+      appearance: none;
+    }
+
+    /* Style for dropdown options */
+    select option {
+      background: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+      color: #fff; /* White text */
+      border: none;
+      outline: none;
+    }
+
+    .form-group .radio-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .form-group .radio-group label {
+      font-weight: 300;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      background: #ff6f61;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff4a3d;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Transparent Navigation Bar -->
+  <header>
+    <nav>
+      <a href="homepage.html">Home</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="header">
+      <h1>Offer a Ride</h1>
+      <p>Share your journey and help others travel with ease!</p>
+    </div>
+    <form id="offerRideForm">
+      <!-- Date and Time -->
+      <div class="form-group">
+        <label for="rideDate">Date and Time</label>
+        <input type="datetime-local" id="rideDate" name="rideDate" required>
+      </div>
+
+      <!-- Pickup Location -->
+      <div class="form-group">
+        <label for="pickupLocation">Pickup Location</label>
+        <input type="text" id="pickupLocation" name="pickupLocation" placeholder="Enter pickup location" required>
+      </div>
+
+      <!-- Drop-off Location -->
+      <div class="form-group">
+        <label for="dropoffLocation">Destination</label>
+        <input type="text" id="dropoffLocation" name="dropoffLocation" placeholder="Enter drop-off location" required>
+      </div>
+
+      <!-- Vehicle Type -->
+      <div class="form-group">
+        <label for="vehicleType">Vehicle Type</label>
+        <select id="vehicleType" name="vehicleType" required>
+          <option value="car">Car</option>
+          <option value="bike">Bike</option>
+        </select>
+      </div>
+
+      <!-- Number of Seats (only for cars) -->
+      <div class="form-group" id="seatsGroup">
+        <label for="seats">Number of Seats Available</label>
+        <input type="number" id="seats" name="seats" min="1" max="7" value="1" required>
+      </div>
+
+      <!-- Gender Preferences (if user is a woman) -->
+      <div class="form-group" id="genderPreferences" style="display: none;">
+        <label>Gender Preferences</label>
+        <div class="radio-group">
+          <div>
+            <input type="radio" id="noPreference" name="genderPreference" value="any" checked>
+            <label for="noPreference">No Preference</label>
+          </div>
+          <div>
+            <input type="radio" id="womenOnly" name="genderPreference" value="female">
+            <label for="womenOnly">Women Only</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-group">
+        <button type="submit">Offer Ride</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const vehicleType = document.getElementById("vehicleType");
+      const seatsGroup = document.getElementById("seatsGroup");
+      const genderPreferences = document.getElementById("genderPreferences");
+
+      // Show/hide number of seats based on vehicle type
+      vehicleType.addEventListener("change", function () {
+        if (vehicleType.value === "car") {
+          seatsGroup.style.display = "block";
+        } else {
+          seatsGroup.style.display = "none";
+        }
+      });
+
+      // Fetch user data from the server to determine gender
+      fetch('http://localhost:5001/api/users/profile', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      .then(response => response.json())
+      .then(user => {
+        if (user.gender === 'female') {
+          genderPreferences.style.display = "block";
+        } else {
+          genderPreferences.style.display = "none";
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+
+      // Handle form submission
+      const form = document.getElementById("offerRideForm");
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const rideDetails = Object.fromEntries(formData.entries());
+
+        // Validate number of seats
+        const seats = parseInt(rideDetails.seats);
+        if (seats < 1 || seats > 7) {
+          alert("Number of seats must be between 1 and 7.");
+          return;
+        }
+
+        const token = localStorage.getItem('token');
+        if (!token) {
+          alert('You need to log in first.');
+          window.location.href = 'login.html';
+          return;
+        }
+
+        try {
+          const response = await fetch('http://localhost:5001/api/rides', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(rideDetails),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            alert('Ride offered successfully!');
+            window.location.href = 'dashboard.html'; // Redirect to dashboard
+          } else {
+            alert(data.message);
+          }
+        } catch (error) {
+          console.error('Error offering ride:', error);
+          alert('An error occurred while offering the ride. Please try again.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
