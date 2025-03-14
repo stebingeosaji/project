@@ -8,12 +8,23 @@ The Carpooler backend is a Node.js application built with Express that provides 
 carpooler-backend
 ├── src
 │   ├── controllers
-│   │   └── authController.js
+│   │   ├── authController.js
+│   │   ├── userController.js
+│   │   ├── rideController.js
+│   │   └── protectedController.js
 │   ├── routes
-│   │   └── authRoutes.js
+│   │   ├── authRoutes.js
+│   │   ├── userRoutes.js
+│   │   └── protectedRoutes.js
 │   ├── models
-│   │   └── userModel.js
+│   │   ├── userModel.js
+│   │   └── rideModel.js
+│   ├── middleware
+│   │   └── authMiddleware.js
+│   ├── scripts
+│   │   └── findUser.js
 │   ├── app.js
+│   ├── server.js
 │   └── config
 │       └── db.js
 ├── package.json
@@ -39,6 +50,8 @@ carpooler-backend
    PORT=5001
    MONGODB_URI=<your-mongodb-connection-string>
    JWT_SECRET=<your-jwt-secret>
+   EMAIL_USER=<your-email-user>
+   EMAIL_PASS=<your-email-password>
    ```
 
 ## Usage
@@ -54,6 +67,10 @@ carpooler-backend
 
 - **POST /api/auth/register**: Register a new user.
 - **POST /api/auth/login**: Log in an existing user.
+- **POST /api/auth/verify-otp**: Verify OTP for user registration.
+- **GET /api/users/profile**: Get the profile of the logged-in user.
+- **GET /api/protected**: Access a protected route.
+- **POST /api/rides**: Offer a new ride (requires authentication).
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or features.
